@@ -1,6 +1,14 @@
 from scipy import interpolate
 import pandas as pd
 import numpy as np
+<<<<<<< HEAD
+=======
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import tkinter as tk
+from tkinter import *
+>>>>>>> fb8891c1b49f331c9cda8df7871bece175d2be0e
 from setExport import set_export
 from variableCollector import get_variables
 from variableSet import set_variables
