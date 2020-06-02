@@ -1,7 +1,5 @@
 from openpyxl import load_workbook
 import openpyxl
-import tkinter as tk
-from tkinter import *
 from os.path import dirname, abspath
 from saveExport import export_save
 from openpyxl.chart import Reference, Series, LineChart

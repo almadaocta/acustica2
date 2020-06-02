@@ -1,7 +1,5 @@
 from openpyxl import load_workbook
 import openpyxl
-import tkinter as tk
-from tkinter import *
 from os.path import dirname, abspath
 import os.path
 import string
