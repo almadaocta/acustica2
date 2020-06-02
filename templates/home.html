@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Reducción sonora</title>
+    <link rel="stylesheet" href="{{ url_for('static',    filename='css/template.css') }}">
+    <script type=text/javascript src="{{url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/fbb336884d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+  </head>
+  <body>
+
+  <div class="inputdata">
+    
+    <span class="selectSpan">
+      <p>Material</p>
+      <select name="material" id="material">
+        <option value="Aluminio">Aluminio</option>
+        <option value="Bronce">Bronce</option>
+        <option value="Cobre">Cobre</option>
+        <option value="Contrachapado">Contrachapado</option>
+        <option value="Hierro">Hierro</option>
+        <option value="Hormigon">Hormigón</option>
+        <option value="Hormigon ladrillo">Hormigón ladrillo</option>
+        <option value="Ladrillo">Ladrillo</option>
+        <option value="Madera">Madera</option>
+        <option value="Neopreno">Neopreno</option>
+        <option value="Plomo">Plomo</option>
+        <option value="Vidrio">Vidrio</option>
+        <option value="PYL">PYL</option>
+      </select>
+      <p class='layerM animate__animated animate__slideInDown'>Material 2</p>
+      <select class='layerM animate__animated animate__slideInDown' name="material2" id="material2">
+        <option value="Aluminio">Aluminio</option>
+        <option value="Bronce">Bronce</option>
+        <option value="Cobre">Cobre</option>
+        <option value="Contrachapado">Contrachapado</option>
+        <option value="Hierro">Hierro</option>
+        <option value="Hormigon">Hormigón</option>
+        <option value="Hormigon ladrillo">Hormigón ladrillo</option>
+        <option value="Ladrillo">Ladrillo</option>
+        <option value="Madera">Madera</option>
+        <option value="Neopreno">Neopreno</option>
+        <option value="Plomo">Plomo</option>
+        <option value="Vidrio">Vidrio</option>
+        <option value="PYL">PYL</option>
+      </select>
+      <button class="addLayer" id="addLayer"><i class="fas fa-plus"></i>Agregar capa</button>
+    </span>
+    
+    
+    
+    <div class="measurements">
+      <span>
+        <p>Ancho</p>
+        <input type="number" step="any"  min="0" id="length" tabindex="1">
+        <p>m</p>
+      </span>
+      <span>
+        <p>Alto</p>
+        <input type="number" step="any" min="0" id="height" tabindex="2">
+        <p>m</p>
+      </span>
+      <span>
+        <p>Espesor</p>
+        <input type="number" step="any" min="0" min="100" id="thickness" tabindex="3">
+        <p>m</p>
+      </span>
+      <span class='layerM animate__animated animate__slideInDown'>
+        <p>Espesor 2</p>
+        <input type="number" step="any" min="0" min="100" id="thickness2" tabindex="4">
+        <p>m</p>
+      </span>
+      <p class="error1">Completá todos los campos</p>
+      <p class="error2">Los valores deben ser mayores a 0</p>
+    </div>
+    <div class="methods">
+      <span>
+        <p>Davy</p>
+        <input type="checkbox" id="davy" name="davy" >
+        <label for="davy">Toggle</label>
+      </span>
+      <span>
+        <p>Cremer</p>
+        <input type="checkbox" id="cremer" name="cremer"  class="switch">
+        <label for="cremer">Toggle</label>
+      </span>
+      <span>
+        <p>Sharp</p>
+        <input type="checkbox" id="sharp" name="sharp"  class="switch">
+        <label for="sharp">Toggle</label>
+      </span>
+      <span>
+        <p>ISO</p>
+        <input type="checkbox" id="iso" name="iso"  class="switch">
+        <label for="iso">Toggle</label>
+      </span>
+      
+
+    </div>
+    <span class="selectSpan">
+      <p>Filtrado</p>
+      <select name="filtrado" id="filtrado">
+        <option value="tercios">Tercios</option>
+        <option value="octavas">Octavas</option>
+      </select>
+    </span>
+    <div class="actions">
+      <button id="calc">Calcular</button>
+      <button id="export" class="disabled" onclick=" window.open('/export-file/','_blank')">Exportar</button>
+    </div>
+    
+
+    
+  </div>  
+    
+
+    <div id="graph">
+      <div class="openIndicadores animate__animated animate__slideInDown"><span>Índices evaluadores</span></div>
+      <div class="expandIndicadores animate__animated animate__slideInDown">
+
+        <div class="indicadoresContainer animate__animated animate__fadeIn">
+          <columns>
+            <column>
+              <span>R,w:<value class='rwValue'></value></span>
+              <span>C:<value class='cValue'></value></span>
+              <span>C<sub>50-3150</sub>:<value class='C503150Value'></value></span>  
+              <span>C<sub>50-5000</sub>:<value class='C505000Value'></value></span> 
+              <span>C<sub>100-5000</sub>:<value class='C1005000Value'></value></span>
+            </column>
+            <column>
+              <span>Ctr:<value class='ctrValue'></value></span> 
+              <span>Ctr<sub>50-1350</sub>:<value class='CTR501350Value'></value></span> 
+              <span>Ctr<sub>50-5000</sub>:<value class='CTR505000Value'></value></span>   
+              <span>Ctr<sub>100-5000</sub>:<value class='CTR1005000Value'></value></span> 
+              <span>STC:<value class='stcValue'></value></span> 
+            </column>
+          </columns>
+          
+           
+           
+           
+          <extra>Indicadores correspondientes a los valores de reducción sonora obtenidos a partir de la norma ISO 12354-1</extra>
+
+        </div>
+
+
+
+      </div>
+    </div>
+    
+
+    
+    <script  src="{{url_for('static', filename='js/main.js') }}"></script>
+    </body>
