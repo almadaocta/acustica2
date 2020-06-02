@@ -71,9 +71,9 @@ def run_Calc(f,l,h,t,m,ly,t2,m2):
 
     
 
-    preIndicadores(calcData,ly,t2,m2)
+    RcI,RdI,RiI,RsI=preIndicadores(calcData,ly,t2,m2)
     
-    name=set_export(calcData,Rd,Rs,Rc,Ri,ly)
+    name=set_export(calcData,RdI,RsI,RcI,RiI,ly)
 
     
 

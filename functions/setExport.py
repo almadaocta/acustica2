@@ -138,7 +138,7 @@ def set_export(calcData,Rd,Rs,Rc,Ri,ly):
 
 
 
-
+    wb.active = 0
 
 
 

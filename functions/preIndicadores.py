@@ -71,5 +71,5 @@ def preIndicadores(calcData,ly,t2,m2):
 
     get_indicadores(calcData,RiI)
 
-
+    return RcI,RdI,RiI,RsI
     #SET EXPORT INDICADORES
