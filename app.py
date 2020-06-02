@@ -5,8 +5,6 @@ sys.path.insert(0, 'functions')
 from runCalc import run_Calc
 from flask import send_from_directory
 import os
-import matplotlib
-matplotlib.use('Agg')
 path = os.getcwd()
 
 app = Flask(__name__)

@@ -6,6 +6,7 @@ from variableCollector import *
 from variableSet import *
 from runCalc import *
 from setExport import export_dialog
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 

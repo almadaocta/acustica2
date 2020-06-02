@@ -2,6 +2,7 @@ from scipy import interpolate
 from graph import graph
 import pandas as pd
 import numpy as np
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
