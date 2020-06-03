@@ -83,7 +83,7 @@ p{
     letter-spacing: 0.05em;
     font-size: 1em;
 }
-.error1, .error2{
+.error1, .error2, .error3{
     margin:0 !important;
     margin-right: 5% !important;
     margin-top:5% !important;
@@ -150,17 +150,19 @@ input[type='checkbox']{
 }
 .methods{
     display: flex;
-    flex-direction: column-reverse;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
+    width:15vw;
 }
 .methods span{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     font-size: 1em;
+    width:10vw;
 }
 .measurements{
     display: flex;
@@ -227,7 +229,7 @@ label:after {
     background: rgb(0, 230, 118);
 }
 #iso:checked + label {
-    background: rgb(255, 196, 0);
+    background: rgb(171, 71, 188);
 }
 #davy:checked + label {
     background: rgb(101, 31, 255);
@@ -257,6 +259,9 @@ label:active:after {
     transition: 0.15s;
 }
 #calc:hover{
+    background-color: #536dfe;
+}
+.loadingColor{
     background-color: #536dfe;
 }
 #export{
@@ -319,13 +324,14 @@ label:active:after {
     font-size: .7em;
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.2em;
     font-family: 'Roboto', sans-serif;
     color: #FAFAFA;
     padding: 5%;
     white-space: normal; 
     min-width: 15vw;
 }
+
 .openIndicadores i{
     color: #fafafa;
 }
@@ -414,3 +420,44 @@ extra{
     color: #FAFAFA;
     line-height: 1.5em;
 }
+
+
+
+
+.lds-ring {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

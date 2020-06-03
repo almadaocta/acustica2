@@ -73,8 +73,8 @@
         <input type="number" step="any" min="0" min="100" id="thickness2" tabindex="4">
         <p>m</p>
       </span>
-      <p class="error1">Completá todos los campos</p>
-      <p class="error2">Los valores deben ser mayores a 0</p>
+      <p class="error1 animate__animated animate__slideInDown">Completá todos los campos</p>
+      <p class="error2 animate__animated animate__slideInDown">Los valores deben ser mayores a 0</p>
     </div>
     <div class="methods">
       <span>
@@ -97,7 +97,7 @@
         <input type="checkbox" id="iso" name="iso"  class="switch">
         <label for="iso">Toggle</label>
       </span>
-      
+      <p class="error3 animate__animated animate__slideInDown">Seleccioná al menos un método</p>
 
     </div>
     <span class="selectSpan">
@@ -108,7 +108,13 @@
       </select>
     </span>
     <div class="actions">
-      <button id="calc">Calcular</button>
+      <button id="calc">
+          
+        <text>Calcular</text>
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+
+
+      </button>
       <button id="export" class="disabled" onclick=" window.open('/export-file/','_blank')">Exportar</button>
     </div>
     
@@ -118,7 +124,7 @@
     
 
     <div id="graph">
-      <div class="openIndicadores animate__animated animate__slideInDown"><span>Índices evaluadores</span></div>
+      <div class="openIndicadores animate__animated animate__slideInDown"><span>Datos globales</span></div>
       <div class="expandIndicadores animate__animated animate__slideInDown">
 
         <div class="indicadoresContainer animate__animated animate__fadeIn">

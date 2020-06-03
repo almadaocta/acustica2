@@ -38,8 +38,6 @@ $(function() {
                 CTR505000=data['CTR505000'];
                 CTR1005000=data['CTR1005000'];
 
-                console.log(rw)
-                
 
                 $('.rwValue').html(rw);
                 $('.stcValue').html(stc);
@@ -89,7 +87,7 @@ $(function() {
                     name: 'ISO',
                     type: 'scatter',
                     line: {
-                        color: 'rgb(255, 196, 0)',
+                        color: 'rgb(171, 71, 188)',
                     }
                 };                
                 if (cremer){
@@ -137,6 +135,12 @@ $(function() {
                 }
     
                 Plotly.newPlot(graphdiv, data,layout);
+                graphdiv.on('plotly_afterplot', function(){
+                    $('.openIndicadores').css('display','flex');
+                    $('#calc').removeClass("loadingColor");
+                    $('#calc text').css("display","initial");
+                    $('.lds-ring').css("display","none");  
+                });
 
                 
                 
@@ -193,31 +197,54 @@ $(function() {
     });
 
     $('#calc').click(function() {
+        totalThickness=parseInt(document.getElementById('thickness').value)+parseInt(document.getElementById('thickness2').value);
+
+        //Validación inputs
+        
         if (layer==0){
             if ((!document.getElementById('length').value) || (!document.getElementById('height').value) || (!document.getElementById('thickness').value)){
                 $('.error2').css('display','none');
+                $('.error3').css('display','none');
                 $('.error1').css('display','initial');
             }else if ((document.getElementById('length').value <= 0) || (document.getElementById('height').value <= 0) || (document.getElementById('thickness').value <= 0)){
                 $('.error1').css('display','none');
+                $('.error3').css('display','none');
                 $('.error2').css('display','initial');
-            }else{
+            }else if ((document.getElementById('davy').checked==false) && (document.getElementById('sharp').checked==false) && (document.getElementById('cremer').checked==false) && (document.getElementById('iso').checked==false)){
+                $('.error1').css('display','none');
+                $('.error2').css('display','none');
+                $('.error3').css('display','initial');
+            }else {
                 $('.error2').css('display','none');
                 $('.error1').css('display','none');
-                $('.openIndicadores').css('display','flex');
+                $('.error3').css('display','none');
                 runLayer(layer);
+
+                $('#calc').addClass('loadingColor')
+                $('#calc text').css("display","none");
+                $('.lds-ring').css("display","flex");                 
+
+
+
             }
         }else if(layer==1){
             if ((!document.getElementById('length').value) || (!document.getElementById('height').value) || (!document.getElementById('thickness').value) || (!document.getElementById('thickness2').value)){
                 $('.error2').css('display','none');
                 $('.error1').css('display','initial');
-            }else if ((document.getElementById('length').value <= 0) || (document.getElementById('height').value <= 0) || (document.getElementById('thickness').value <= 0) || (document.getElementById('thickness2').value <=0)){
+            }else if ((document.getElementById('length').value <= 0) || (document.getElementById('height').value <= 0) || (document.getElementById('thickness').value <= 0) || (document.getElementById('thickness2').value <=false)){
                 $('.error1').css('display','none');
                 $('.error2').css('display','initial');
+            }else if ((document.getElementById('davy').checked==false) && (document.getElementById('sharp').checked==false) && (document.getElementById('cremer').checked==false) && (document.getElementById('iso').checked==false)){
+                $('.error1').css('display','none');
+                $('.error2').css('display','none');
+                $('.error3').css('display','initial');
             }else{
                 $('.error2').css('display','none');
-                $('.error1').css('display','none');
-                $('.openIndicadores').css('display','flex');    
+                $('.error1').css('display','none');  
                 runLayer(layer);
+                $('#calc').addClass('loadingColor')
+                $('#calc text').css("display","none");
+                $('.lds-ring').css("display","flex");  
             }
         } 
     });
@@ -229,7 +256,7 @@ $(function() {
             $('.openIndicadores').addClass('closeIndicadores')
         }else if(clicks % 2 == 0){
             $('.expandIndicadores').css('display','none')
-            $('.openIndicadores').html('<span>Índices evaluadores</span>')
+            $('.openIndicadores').html('<span>Datos globales</span>')
             $('.openIndicadores').removeClass('closeIndicadores')
         }
         clicks= clicks + 1;

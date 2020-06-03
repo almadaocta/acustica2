@@ -33,37 +33,38 @@ def run_sharp(calcData) :
                 R[i]=R1          
     
     #Interpolacion linear / Auxiliares
-    xStart=round((Fc/2),0)
-    xEnd=(round(Fc,0))
-    Ntot=nint + (m/(485*sqrt(xStart)))
-    yEndA=10*log10(1+((pi*m*xEnd)/(p0*c))**2) + 10*log10((Ntot*2*xEnd)/(pi*Fc))
-    yEndB=10*log10(1+((pi*m*xEnd)/(p0*c))**2) - 5.5
-    if yEndA<=yEndB:
-        yEnd=yEndA
-    if yEndA>yEndB:
-        yEnd=yEndB
-    yStart=10*log10(1+((pi*m*xStart)/(p0*c))**2) - 5.5
-    auxL=int((xEnd-xStart)*1)
+    if Fc>20:
+        xStart=round((Fc/2),0)
+        xEnd=(round(Fc,0))
+        Ntot=nint + (m/(485*sqrt(xStart)))
+        yEndA=10*log10(1+((pi*m*xEnd)/(p0*c))**2) + 10*log10((Ntot*2*xEnd)/(pi*Fc))
+        yEndB=10*log10(1+((pi*m*xEnd)/(p0*c))**2) - 5.5
+        if yEndA<=yEndB:
+            yEnd=yEndA
+        if yEndA>yEndB:
+            yEnd=yEndB
+        yStart=10*log10(1+((pi*m*xStart)/(p0*c))**2) - 5.5
+        auxL=int((xEnd-xStart)*1)
 
-    fAux=[None] * (auxL+1)
-    rAux=[None] * (auxL+1)
+        fAux=[None] * (auxL+1)
+        rAux=[None] * (auxL+1)
 
-    fAux[0]=xStart*1
-    for i in range(1,len(fAux)):
-        fAux[i]=fAux[i-1]+1
-    rAux[0]=yStart
-    rAux[auxL]=yEnd
+        fAux[0]=xStart*1
+        for i in range(1,len(fAux)):
+            fAux[i]=fAux[i-1]+1
+        rAux[0]=yStart
+        rAux[auxL]=yEnd
 
-    s=pd.Series(rAux)
-    sharpNew=s.interpolate(method='linear')
-    sList=sharpNew.values.tolist()
+        s=pd.Series(rAux)
+        sharpNew=s.interpolate(method='linear')
+        sList=sharpNew.values.tolist()
 
-    for i in range(len(R)):
-        if not R[i]:
-            fPos=int(fVector[i])*1
-            for o in range(len(fAux)):
-                if fAux[o]==fPos:
-                    R[i]=sList[o]
+        for i in range(len(R)):
+            if not R[i]:
+                fPos=int(fVector[i])*1
+                for o in range(len(fAux)):
+                    if fAux[o]==fPos:
+                        R[i]=sList[o]
   
     
     return R        
