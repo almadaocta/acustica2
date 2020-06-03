@@ -49,9 +49,9 @@ def get_rw(ReportVector,Ralt,filtro):
                 if localDiff>0:
                     difference.append(localDiff)
                 else:
-                    difference.append(0)
-                if sum(difference)<32:
-                    success=1
+                    difference.append(0)    
+            if sum(difference)<32:
+                success=1
     
     difference=[]
     for i in range (len(RefCurve)):
@@ -163,7 +163,7 @@ def get_stc(ReportVector,Ralt,filtro):
     if filtro=='octava':
         stc=RefCurve[2]
     else:    
-        stc=RefCurve[6]
+        stc=RefCurve[7]
     
     return RefCurve,stc
 

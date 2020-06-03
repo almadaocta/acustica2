@@ -69,6 +69,7 @@ def preIndicadores(calcData,ly,t2,m2):
         RsI=np.add(RsI,Rc2).tolist()
 
 
+    
     get_indicadores(calcData,RiI)
 
     return RcI,RdI,RiI,RsI
