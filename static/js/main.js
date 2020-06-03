@@ -38,7 +38,7 @@ $(function() {
                 CTR505000=data['CTR505000'];
                 CTR1005000=data['CTR1005000'];
 
-
+                
                 $('.rwValue').html(rw);
                 $('.stcValue').html(stc);
                 $('.cValue').html(C);
@@ -219,7 +219,7 @@ $(function() {
                 $('.error1').css('display','none');
                 $('.error3').css('display','none');
                 runLayer(layer);
-
+               
                 $('#calc').addClass('loadingColor')
                 $('#calc text').css("display","none");
                 $('.lds-ring').css("display","flex");                 
@@ -241,6 +241,7 @@ $(function() {
             }else{
                 $('.error2').css('display','none');
                 $('.error1').css('display','none');  
+               
                 runLayer(layer);
                 $('#calc').addClass('loadingColor')
                 $('#calc text').css("display","none");
@@ -256,7 +257,7 @@ $(function() {
             $('.openIndicadores').addClass('closeIndicadores')
         }else if(clicks % 2 == 0){
             $('.expandIndicadores').css('display','none')
-            $('.openIndicadores').html('<span>Datos globales</span>')
+            $('.openIndicadores').html('<span>Datos globales</span><i class="fas fa-chevron-down"></i>')
             $('.openIndicadores').removeClass('closeIndicadores')
         }
         clicks= clicks + 1;

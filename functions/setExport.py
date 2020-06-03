@@ -77,7 +77,7 @@ def set_export(calcData,Rd,Rs,Rc,Ri,ly):
 
     for i in range(10, 10+len(calcData['rwCurve'])):
         ws.cell(row = 2, column = i).value = round(calcData['rwCurve'][i-10],1)
-        ws.cell(row = 3, column = i).value = round(calcData['StcCurve'][i-10],0)
+        ws.cell(row = 3, column = i+1).value = round(calcData['StcCurve'][i-10],0)
     
 
     ws.cell(row = 2, column = 2).value=calcData['Rw']
@@ -107,7 +107,7 @@ def set_export(calcData,Rd,Rs,Rc,Ri,ly):
 
     chart2.set_categories(xAxis)
     chart2.height = 10 # default is 7.5
-    chart2.width = 15 # default is 15
+    chart2.width = 12 # default is 15
     chart2.x_axis.title = 'f[Hz]'
     chart2.y_axis.title = 'Db'
     chart2.legend.position = 't'
@@ -128,7 +128,7 @@ def set_export(calcData,Rd,Rs,Rc,Ri,ly):
 
     chart3.set_categories(xAxis)
     chart3.height = 10 # default is 7.5
-    chart3.width = 15 # default is 15
+    chart3.width = 12 # default is 15
     chart3.x_axis.title = 'f[Hz]'
     chart3.y_axis.title = 'Db'
     chart3.legend.position = 't'

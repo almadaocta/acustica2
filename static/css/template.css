@@ -309,7 +309,7 @@ label:active:after {
     background:#212121;
     z-index: 10;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: row;
     cursor: pointer;
     transition: 0.2s;
@@ -329,7 +329,12 @@ label:active:after {
     color: #FAFAFA;
     padding: 5%;
     white-space: normal; 
-    min-width: 15vw;
+    position: relative;
+  
+}
+.loadingValue{
+    position: absolute;
+    right: 0;
 }
 
 .openIndicadores i{
@@ -337,8 +342,8 @@ label:active:after {
 }
 .expandIndicadores{
     position:absolute;
-    height: 80vh;
-    width: 25vw;
+    height: 100%;
+    width: 25%;
     top:0;
     right:0;
     background:#212121;
@@ -377,7 +382,7 @@ label:active:after {
 }
 .indicadoresContainer{
     width: 80%;
-    height: 70%;
+    height: calc(100% - 6vh);
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -406,6 +411,7 @@ label:active:after {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
+    position: relative;
 }
 .indicadoresContainer column span sub{
     font-size: .7em;

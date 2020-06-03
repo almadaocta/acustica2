@@ -163,7 +163,7 @@ def get_stc(ReportVector,Ralt,filtro):
     if filtro=='octava':
         stc=RefCurve[2]
     else:    
-        stc=RefCurve[7]
+        stc=RefCurve[6]
     
     return RefCurve,stc
 
