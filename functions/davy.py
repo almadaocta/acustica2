@@ -11,7 +11,8 @@ def Single_leaf_Davy(calcData, frequency, density, Young, Poisson, thickness,los
     cos21Max = 0.9 # Ángulo limite definido en el trabajo de Davy 
 
     surface_density = calcData['sd']
-    critical_frequency = sqrt(12 * density * (1 - (Poisson**2)) / Young) * (c**2) / (2 * thickness * pi)
+    #critical_frequency = sqrt(12 * density * (1 - (Poisson**2)) / Young) * (c**2) / (2 * thickness * pi)
+    critical_frequency=calcData['Fc']
     normal = po * c / (pi * frequency * surface_density)
     normal2 = normal * normal
     e = 2 * length * width / (length + width)

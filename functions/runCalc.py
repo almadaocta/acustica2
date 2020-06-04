@@ -2,18 +2,18 @@ from scipy import interpolate
 import pandas as pd
 import numpy as np
 from setExport import set_export
-
+from variableCollector import get_variables
+from variableSet import set_variables
+from runDavy import run_davy
+from runCremer import run_cremer
+from runSharp import run_sharp
+from runIso import run_iso
+from layer import set_layer
+from preIndicadores import preIndicadores
 
 def run_Calc(f,l,h,t,m,ly,t2,m2):
 
-    from variableCollector import get_variables
-    from variableSet import set_variables
-    from runDavy import run_davy
-    from runCremer import run_cremer
-    from runSharp import run_sharp
-    from runIso import run_iso
-    from layer import set_layer
-    from preIndicadores import preIndicadores
+    
 
     calcData = get_variables(f,l,h,t,m)
     set_variables(calcData)

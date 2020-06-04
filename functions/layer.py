@@ -25,6 +25,8 @@ def set_layer(calcData,thickness,material):
 
     c = 343 #Velocidad del sonido en el aire
     p0 = 1.18 #Densidad del aire
+    ly = calcData['height'] #Alto
+    lx = calcData['length'] #Ancho
     E2=calcData['young2']
     E1=calcData['young']
     t1=calcData['thickness']
@@ -35,11 +37,21 @@ def set_layer(calcData,thickness,material):
     sd2 = p2*t2 #Densidad superficial material 2
     sdT = sd2 + calcData['sd'] #Densidad superficial total
     Y=((E1*(t1/2))+E2*(t1+(t2/2)))/(E1+E2)
-    Beff=((E1*t1)/(12*(1-O1**2)))*(t1**2+12*((Y-(t1/2))**2))+((E2*t2)/(12*(1-O2**2)))*(t2**2+12*((Y-(t2/2))**2))
-    FcEQ=(c**2/(2*pi))*sqrt(sdT/Beff)
+    B1=calcData['B']
+    B2=(E2/(1-O2**2))*((t2**3)/12)
+    Beff=((E1*t1)/(12*(1-O1**2)))*(t1**2+12*((Y-(t1/2))**2))+((E2*t2)/(12*(1-O2**2)))*(t2**2+12*((Y-((2*t1+t2)/2))**2))
 
-    #Asigno variables al diccionario
+    if t1==t2 and calcData['material2']==calcData['material']:
+        FcEQ=((c**2)/(2*pi))*sqrt(sdT/(B1+B2))
+    else:    
+        FcEQ=((c**2)/(2*pi))*sqrt(sdT/Beff)
 
-    calcData['B'] = Beff #Rigidez a la flexión 
-    calcData['Fc'] = FcEQ #Frecuencia crítica
+    
+    f11 = (c**2/(4*FcEQ))*((1/lx**2)+(1/ly**2)) #Modo (1,1) de placa del elemento 
+
+
+    calcData['Fc'] = FcEQ
+    calcData['sd'] = sdT
+    calcData['f11'] = f11 
+   
     
